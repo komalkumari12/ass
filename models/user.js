@@ -17,7 +17,7 @@ const userDetails = mongoose.Schema(
       required: [true, "Enter email"],
       unique: true,
     },
-    opt: {
+    otp: {
       type: Number,
       required: false,
     },
@@ -28,4 +28,5 @@ const userDetails = mongoose.Schema(
 );
 
 const User = mongoose.model("User", userDetails);
+
 module.exports = User;

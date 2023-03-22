@@ -1,5 +1,5 @@
 const userService = require("../services/user");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); //for encrypting password
 const jwt = require("jsonwebtoken");
 
 exports.signup = async (req, res) => {
@@ -11,7 +11,6 @@ exports.signup = async (req, res) => {
       });
     }
     const hashPassword = await bcrypt.hash(password, 10);
-
     const user = await userService.saveUser({
       username,
       email,
@@ -92,8 +91,7 @@ exports.updateUser = async (req, res) => {
 
     if (user.otp === otp) {
       const hashPassword = await bcrypt.hash(password, 10);
-      updatedUser = await userService.updateUser(id, {
-        ...user,
+      updatedUser = await userService.updateUser(user_id, {
         password: hashPassword,
       });
 
